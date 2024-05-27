@@ -56,7 +56,10 @@ class HomePage extends StatelessWidget {
             },
           ),
         ),
-        child: const Icon(Icons.shopping_bag),
+        child: const Icon(
+          Icons.shopping_bag,
+          color: Colors.grey,
+        ),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -110,28 +113,27 @@ class HomePage extends StatelessWidget {
               builder: (context, value, child) {
                 return GridView.builder(
                   padding: const EdgeInsets.all(12),
-                  physics: const NeverScrollableScrollPhysics(),
+                  // physics: const NeverScrollableScrollPhysics(),
                   itemCount: value.shopItems.length,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     childAspectRatio: 1 / 1.2,
                   ),
                   itemBuilder: (context, index) {
-                    return  GroceryItemTile(
+                    return GroceryItemTile(
                       itemName: value.shopItems[index][0],
                       itemPrice: value.shopItems[index][1],
                       imagePath: value.shopItems[index][2],
                       color: value.shopItems[index][3],
-                      // onPressed: () =>
-                      //     Provider.of<CartModel>(context, listen: false)
-                      //         .addItemToCart(index),
-                      onPressed: null,
+                      onPressed: () =>
+                          Provider.of<CartModel>(context, listen: false)
+                              .addItemToCart(index),
                     );
                   },
                 );
               },
             ),
-          )
+          ),
         ],
       ),
     );
